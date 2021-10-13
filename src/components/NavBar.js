@@ -14,7 +14,7 @@ const NavBar = () => {
             </AppBar>
             {/* <Drawer sx={{width: drawerWidth, flexShrink: 0}}variant='permanent' anchor='left'>
                 <Toolbar>
-
+                    <h2>Hey</h2>
                 </Toolbar>
             </Drawer> */}
         </Box>

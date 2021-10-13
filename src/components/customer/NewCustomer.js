@@ -26,7 +26,6 @@ const NewCustomer = () => {
 
     }
 
-    console.log(state)
     return (
         <Grid container direction='column' alignItems='center' justifyContent='center'>
             <Paper elevation={10} style={paperStyle}>
