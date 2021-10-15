@@ -3,6 +3,7 @@ import { Grid, Paper } from '@mui/material'
 import MyCart from './product/MyCart'
 import ProductList from './product/ProductList'
 import ProductSearch from './product/ProductSearch'
+import CartTotal from './CartTotal'
 
 const Home = () => {
     const productStyle = {padding: 20, height: '90vh', width: 700, margin: '20px auto', borderRadius: 25, overflowY: 'scroll'}
@@ -15,7 +16,10 @@ const Home = () => {
     useEffect(() => {
         fetch('http://localhost:3001/products')
         .then(resp => resp.json())
-        .then(data => setProducts(data))
+        .then(data => { 
+            setProducts(data)
+            console.log(data)
+        })
     }, [])
 
     const handleAddToCart = (productToAdd) => {
@@ -42,7 +46,9 @@ const Home = () => {
                 <Paper elevation={10} style={cartStyle}>
                         <h2>Cart</h2>
                         <MyCart cart={cart} handleRemoveFromCart={handleRemoveFromCart}/>
-                        {/* <CartTotal /> */}
+                        <Grid>
+                            <CartTotal cart={cart}/>
+                        </Grid>
                 </Paper>
             </Grid>
         </div>
