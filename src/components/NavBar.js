@@ -3,13 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Menu } from '@mui/material'
 import { useHistory } from 'react-router-dom'
 import { logout } from '../actions/sessions'
-import { InboxIcon } from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail';
 
 const NavBar = () => {
     const drawerWidth = 240
 
     const [anchorEl, setAnchorEl] = useState(null);
+    const dispatch = useDispatch();
     const history = useHistory();
     
     const handleMenuOpen = (event) => {
@@ -19,19 +18,20 @@ const NavBar = () => {
     const handleClose = () => {
         setAnchorEl(null);
     }
+
+    const handleProfile = () => {
+        setAnchorEl(null);
+        history.push('/me')
+    }
+
     const handleLogout = () => {
         setAnchorEl(null);
         dispatch(logout(history))
         history.push('/login')
     }
-
-    const loggedIn = useSelector(state => state.sessions.loggedIn)
     const currentUser = useSelector(state => state.sessions.currentUser)
-    const dispatch = useDispatch();
     const initials = `${currentUser.first_name[0]}${currentUser.last_name[0]}`
 
-    // const menuItems = 
-    // create variable with the first and last letter of the user logged in
     return (
         // <Box sx={{flexGrow: 1, display: 'flex'}}>
     <div>
@@ -71,7 +71,7 @@ const NavBar = () => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                        <MenuItem onClick={handleProfile}>Profile</MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
                 </div>

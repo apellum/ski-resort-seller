@@ -5,7 +5,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { login } from '../../actions/sessions';
 import { useHistory } from 'react-router-dom';
 
-const Login = ({loginUser}) => {
+const Login = () => {
     const paperStyle = {padding : 20, height: '70vh', width: 350, margin: '20px auto', borderRadius: 25}
     const avatarStyle = {backgroundColor: '#03a9f4'}
     const passwordStyle = {marginTop: 15, textAlign:'center'}

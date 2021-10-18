@@ -4,27 +4,9 @@ import { getCurrentUser } from "../actions/sessions";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from "./Home";
 import Login from "./sessions/Login";
-// import NewCustomer from "./customer/NewCustomer";
-// import NavBar from"./NavBar";
+import SalespersonProfile from "./employee/SalespersonProfile";
 
 function App() {
-  // const [currentUser, setCurrentUser] = useState(null)
-  // const [loggedIn, setLoggedIn] = useState(false)
-  // const [loading, setLoading] = useState(true)
-  
-  // const handleCurrentUser = (user) => {
-  //   if (user.email) {
-  //     setCurrentUser(user);
-  //     setLoggedIn(true);
-  //     setLoading(false);
-  //     console.log(user)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getCurrentUser(handleCurrentUser)
-  //   setLoading(false)
-  // }, [])
 
   const requesting = useSelector(state => state.requesting);
   const dispatch = useDispatch();
@@ -39,14 +21,11 @@ function App() {
 
   return (
     <div>
-    {/* <Home/> */}
-    {/* <Login /> */}
-    {/* <NewCustomer/> */}
       <Router>
-        {/* <NavBar/> */}
         <Switch>
           <Route exact path='/login' component={ Login }/>
           <Route exact path='/home' component={ Home } />
+          <Route exact path='/me' component={ SalespersonProfile }/>
         </Switch>
       </Router>
     </div>
