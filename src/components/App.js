@@ -1,40 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentUser } from "../actions/sessions";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from "./Home";
-import Login from "./Login";
-import NewCustomer from "./customer/NewCustomer";
-import NavBar from"./NavBar";
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
-import { getCurrentUser } from "./actions/auth"
+import Login from "./sessions/Login";
+// import NewCustomer from "./customer/NewCustomer";
+// import NavBar from"./NavBar";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null)
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [loading, setLoading] = useState(true)
+  // const [currentUser, setCurrentUser] = useState(null)
+  // const [loggedIn, setLoggedIn] = useState(false)
+  // const [loading, setLoading] = useState(true)
   
-  const handleCurrentUser = (user) => {
-    if (user.email) {
-      setCurrentUser(user);
-      setLoggedIn(true);
-      setLoading(false);
-      console.log(user)
-    }
-  }
+  // const handleCurrentUser = (user) => {
+  //   if (user.email) {
+  //     setCurrentUser(user);
+  //     setLoggedIn(true);
+  //     setLoading(false);
+  //     console.log(user)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   getCurrentUser(handleCurrentUser)
+  //   setLoading(false)
+  // }, [])
+
+  const requesting = useSelector(state => state.requesting);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getCurrentUser(handleCurrentUser)
-    setLoading(false)
-  }, [])
+    dispatch(getCurrentUser())
+  }, [dispatch])
 
+  if (requesting) {
+    return <h1>loading...</h1>
+  }
 
   return (
     <div>
     {/* <Home/> */}
-    {/* <NavBar/> */}
     {/* <Login /> */}
     {/* <NewCustomer/> */}
       <Router>
+        {/* <NavBar/> */}
         <Switch>
-          <Route exact path='/' render={(props) => <Login {...props} handleCurrentUser={handleCurrentUser}/>}/> 
+          <Route exact path='/login' component={ Login }/>
+          <Route exact path='/home' component={ Home } />
         </Switch>
       </Router>
     </div>

@@ -6,7 +6,6 @@ const CartTotal = ({cart}) => {
     useEffect(() => {
         let nums = [];
         cart.forEach((item) => nums.push(item.price));
-        console.log(cart)
         let newNums = nums.reduce((a, b) => {
           return a + b;
         }, 0);

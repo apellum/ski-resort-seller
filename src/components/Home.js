@@ -4,21 +4,21 @@ import MyCart from './product/MyCart'
 import ProductList from './product/ProductList'
 import ProductSearch from './product/ProductSearch'
 import CartTotal from './CartTotal'
+import NavBar from './NavBar'
 
 const Home = () => {
-    const productStyle = {padding: 20, height: '90vh', width: 700, margin: '20px auto', borderRadius: 25, overflowY: 'scroll'}
-    const cartStyle = {padding: 10, height: '70vh', width: 450, margin: '10px auto', borderRadius: 25, overflowY: 'scroll'}
+    const productStyle = {padding: 20, height: '90vh', width: 500, margin: '20px auto', borderRadius: 25, overflowY: 'scroll'}
+    const cartStyle = {padding: 10, height: '70vh', width: 350, margin: '10px auto', borderRadius: 25, overflowY: 'scroll'}
 
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
-        fetch('http://localhost:3001/products')
+        fetch('http://localhost:3001/api/v1/products')
         .then(resp => resp.json())
         .then(data => { 
             setProducts(data)
-            console.log(data)
         })
     }, [])
 
@@ -37,6 +37,7 @@ const Home = () => {
 
     return (
         <div>
+            <NavBar/>
             <Grid container direction='row' align='center'>
                 <Paper elevation={10} style={productStyle}>
                         <h2>Products</h2>
