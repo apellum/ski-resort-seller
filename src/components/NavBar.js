@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Menu } from '@mui/material'
+import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Menu, Divider } from '@mui/material'
 import { useHistory } from 'react-router-dom'
 import { logout } from '../actions/sessions'
 
@@ -38,13 +38,13 @@ const NavBar = () => {
         <Box sx={{ display: 'flex' }}>
             <AppBar
                 position="fixed"
-                sx={{ width: `calc(100% - ${drawerWidth}px)` }}
+                sx={{ width: `calc(100% - 220px)` }}
             >
             <Toolbar>
-                <Typography variant="h6" noWrap component="div">
+                <Typography flexGrow='1' variant="h6" noWrap component="div">
                 Welcome to resort booker
                 </Typography>
-                <div>
+                <div position="right">
                     <IconButton
                         size="large"
                         edge="end"
@@ -53,6 +53,8 @@ const NavBar = () => {
                         aria-haspopup="true"
                         onClick={handleMenuOpen}
                         color="inherit"
+                        alignItems="right"
+                        marginRight="auto"
                     >
                         <Avatar sx={{position: "right"}}>{initials}</Avatar>
                     </IconButton>
@@ -77,65 +79,31 @@ const NavBar = () => {
                 </div>
             </Toolbar>
             </AppBar>
-            {/* <Drawer
+            <Drawer
                 sx={{
+                paddingTop: 8,
                 width: drawerWidth,
                 flexShrink: 0,
-                '& .MuiDrawer-paper': {
-                    width: drawerWidth,
-                    boxSizing: 'border-box',
-                },
                 }}
                 variant="permanent"
                 anchor="left"
             >
-                <Toolbar />
+                <Toolbar>
                 <Divider />
                 <List>
                     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
                     <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                     </ListItemIcon>
                     <ListItemText primary={text} />
                     </ListItem>
                     ))}
                 </List>
-                <Divider />
-                <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-                </List>
-            </Drawer> */}
+                </Toolbar>
+            </Drawer>
         </Box>
     </div>
-            /* <AppBar position='fixed' sx={{width: `calc(100% - ${drawerWidth}px)`, paper: drawerWidth}}>
-                <Toolbar>
-                    <Typography>
-                        Welcome to Resort Booker
-                    </Typography>
-                    <Avatar sx={{horizontal: "right"}}>H</Avatar>
-                </Toolbar>
-            </AppBar>
-            <Drawer variant='permanent' anchor='left' sx={{width: {drawerWidth}}}>
-                <div>
-                    <Typography>
-                        Notes
-                    </Typography>
-                </div>
-                <List>
-                    <ListItem>
-                        <ListItemIcon></ListItemIcon>
-                        <ListItemText></ListItemText>
-                    </ListItem>
-                </List>
-            </Drawer> */
+            
     )
 }
 
