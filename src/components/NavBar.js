@@ -18,6 +18,9 @@ const NavBar = () => {
     
     const handleClose = () => {
         setAnchorEl(null);
+    }
+    const handleLogout = () => {
+        setAnchorEl(null);
         dispatch(logout(history))
         history.push('/login')
     }
@@ -39,7 +42,7 @@ const NavBar = () => {
             >
             <Toolbar>
                 <Typography variant="h6" noWrap component="div">
-                {initials}
+                Welcome to resort booker
                 </Typography>
                 <div>
                     <IconButton
@@ -69,7 +72,7 @@ const NavBar = () => {
                         onClose={handleClose}
                     >
                         <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
                 </div>
             </Toolbar>
