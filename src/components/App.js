@@ -8,17 +8,13 @@ import SalespersonProfile from "./employee/SalespersonProfile";
 
 function App() {
 
-  const requesting = useSelector(state => state.requesting);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCurrentUser())
-  }, [])
-
-  if (requesting) {
-    return <h1>loading...</h1>
-  }
-
+  }, [dispatch])
+  
   return (
     <div>
       <Router>

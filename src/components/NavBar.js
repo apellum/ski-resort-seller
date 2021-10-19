@@ -32,8 +32,11 @@ const NavBar = () => {
     const currentUser = useSelector(state => state.sessions.currentUser)
     const initials = `${currentUser.first_name[0]}${currentUser.last_name[0]}`
 
+    // const handleNewCustomer = () => {
+    //     dispatch(newCustomer(history))
+    // }
+
     return (
-        // <Box sx={{flexGrow: 1, display: 'flex'}}>
     <div>
         <Box sx={{ display: 'flex' }}>
             <AppBar
@@ -88,16 +91,21 @@ const NavBar = () => {
                 variant="permanent"
                 anchor="left"
             >
-                <Toolbar>
+                <Toolbar sx={{width: 170}}>
                 <Divider />
                 <List>
-                    {['Customers', 'Weather', 'FAQ'].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
+                    <ListItem button >
+                    <ListItemText primary={'Customers'} />
                     </ListItem>
-                    ))}
+                    <ListItem button >
+                    <ListItemText primary={'New Customer'} />
+                    </ListItem>
+                    <ListItem button >
+                    <ListItemText primary={'Weather'} />
+                    </ListItem>
+                    <ListItem button >
+                    <ListItemText primary={'FAQ'} />
+                    </ListItem>
                 </List>
                 </Toolbar>
             </Drawer>
