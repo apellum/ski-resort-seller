@@ -7,8 +7,8 @@ import CartTotal from './CartTotal'
 import NavBar from './NavBar'
 
 const Home = () => {
-    const productStyle = {padding: 20, height: '90vh', width: 500, margin: '20px auto', borderRadius: 25, overflowY: 'scroll'}
-    const cartStyle = {padding: 10, height: '70vh', width: 350, margin: '10px auto', borderRadius: 25, overflowY: 'scroll'}
+    const productStyle = {padding: 20, height: '80vh', width: 650, margin: '10px auto', borderRadius: 25, marginLeft: 225, overflowY: 'scroll'}
+    const cartStyle = {padding: 20, height: '80vh', width: 350, margin: '10px auto', borderRadius: 25, overflowY: 'scroll'}
 
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);

@@ -1,6 +1,7 @@
 const initialState = {
     currentUser: {},
     loggedIn: false,
+    token: null
 }
 
 const sessionsReducer = (state=initialState, action) => {
@@ -8,7 +9,8 @@ const sessionsReducer = (state=initialState, action) => {
         case "LOGIN":
             return {
                 currentUser: action.payload.user,
-                loggedIn: true
+                loggedIn: true,
+                token: action.payload.jwt
             }
         case "LOGOUT":
             return initialState;

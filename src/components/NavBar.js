@@ -91,7 +91,7 @@ const NavBar = () => {
                 <Toolbar>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    {['Customers', 'Weather', 'FAQ'].map((text, index) => (
                     <ListItem button key={text}>
                     <ListItemIcon>
                     </ListItemIcon>

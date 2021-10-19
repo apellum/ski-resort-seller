@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getCurrentUser())
-  }, [dispatch])
+  }, [])
 
   if (requesting) {
     return <h1>loading...</h1>
