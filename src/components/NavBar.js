@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Menu, Divider } from '@mui/material'
 import { useHistory } from 'react-router-dom'
 import { logout } from '../actions/sessions'
+import { addCustomer } from '../actions/customers'
 
 const NavBar = ({customerClicked, setCustomerClicked}) => {
     const drawerWidth = 240
@@ -38,11 +39,10 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
     }
 
     const currentUser = useSelector(state => state.sessions.currentUser)
+    console.log(currentUser)
     const initials = `${currentUser.first_name[0]}${currentUser.last_name[0]}`
 
-    // const handleNewCustomer = () => {
-    //     dispatch(newCustomer(history))
-    // }
+    
 
     return (
     <div>
@@ -112,7 +112,7 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
                      >
                     <ListItemText primary={'Products'} />
                     </ListItem>
-                    <ListItem button >
+                    <ListItem button>
                     <ListItemText primary={'New Customer'} />
                     </ListItem>
                     <ListItem button >

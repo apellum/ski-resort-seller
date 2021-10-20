@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Paper, Avatar, FormControl, InputLabel, Input, Button, Box, TextField } from '@mui/material'
 import LoginIcon from '@mui/icons-material/Login';
 import { login } from '../../actions/sessions';
@@ -9,6 +9,8 @@ const Login = () => {
     const paperStyle = {padding : 20, height: '70vh', width: 350, margin: '20px auto', borderRadius: 25}
     const avatarStyle = {backgroundColor: '#03a9f4'}
 
+    const loggedIn = useSelector(state => state.sessions.loggedIn);
+
     const [state, setState] = useState({
         email: "",
         password: ""
@@ -16,6 +18,12 @@ const Login = () => {
 
     const history = useHistory();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(loggedIn){
+            history.push('/home')
+        }
+    }, [loggedIn, history])
 
     const handleChange = e => {
         setState({
@@ -28,7 +36,6 @@ const Login = () => {
         e.preventDefault();
 
         dispatch(login(state, history))
-        history.push('/home')
     }
 
 

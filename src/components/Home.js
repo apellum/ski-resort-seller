@@ -22,9 +22,10 @@ const Home = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [cart, setCart] = useState([]);
+    const [cartCustomer, setCartCustomer] = useState(null)
     const [search, setSearch] = useState("");
     const [customerClicked, setCustomerClicked] = useState(false);
-            
+    
     useEffect(() => {
         if(loggedIn) {
             dispatch(loadProducts(localStorage.getItem('jwt')))
@@ -33,7 +34,7 @@ const Home = () => {
             history.push('/login')
         }
     }, [loggedIn])
-
+    
     if (requesting) {
         return <h1>loading...</h1>
     }
@@ -50,9 +51,8 @@ const Home = () => {
         setCart((cart) => cart.filter((product) => product.id !== productToRemove.id));
     }
 
-    console.log(customers)
     const displayedProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
-    // const displayedCustomers = customers.filter((customer) => customer.firstName.toLowerCase().includes(search.toLowerCase()));
+    // const displayedCustomers = customers.filter((customer) => customer.first_name.toLowerCase().includes(search.toLowerCase()));
 
     return (
         <div>
@@ -60,8 +60,8 @@ const Home = () => {
             <Grid container direction='row' align='center'>
                 {customerClicked ? <Paper elevation={10} style={productStyle}>
                         <h2>Customers</h2>
-                        <ProductSearch onSearch={setSearch}/>
-                        <CustomerList customers={customers}/>
+                        <ProductSearch onSearch={setSearch} customerClicked={customerClicked}/>
+                        <CustomerList customers={customers} setCartCustomer={setCartCustomer}/>
                 </Paper> : <Paper elevation={10} style={productStyle}>
                         <h2>Products</h2>
                         <ProductSearch onSearch={setSearch}/>
@@ -69,6 +69,7 @@ const Home = () => {
                 </Paper>}
                 <Paper elevation={10} style={cartStyle}>
                         <h2>Cart</h2>
+                        <h3>{cartCustomer}</h3>
                         <MyCart cart={cart} handleRemoveFromCart={handleRemoveFromCart}/>
                         <Grid>
                             <CartTotal cart={cart}/>
