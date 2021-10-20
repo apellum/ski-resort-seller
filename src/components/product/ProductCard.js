@@ -17,7 +17,6 @@ const ProductCard = ({product, handleProductClick, cart}) => {
                     </Card>
                 </Paper>
             </Grid>
-            {/* <li>{product.name}</li> */}
         </div>
     )
 }

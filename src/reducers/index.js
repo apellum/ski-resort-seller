@@ -9,6 +9,6 @@ export default combineReducers({
     errors: errorsReducer,
     requesting: requestingReducer,
     sessions: sessionsReducer,
-    customers: customersReducer,
-    products: productsReducer
+    products: productsReducer,
+    customers: customersReducer
 })

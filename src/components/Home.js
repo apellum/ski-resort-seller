@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux'
 import { loadProducts } from '../actions/products'
+import { loadCustomers } from '../actions/customers'
 import { Grid, Paper } from '@mui/material'
 import MyCart from './product/MyCart'
 import ProductList from './product/ProductList'
+import CustomerList from './customer/CustomerList'
 import ProductSearch from './product/ProductSearch'
 import CartTotal from './CartTotal'
 import NavBar from './NavBar'
@@ -14,26 +16,19 @@ const Home = () => {
     const cartStyle = {padding: 20, height: '80vh', width: 350, margin: '10px auto', borderRadius: 25, overflowY: 'scroll'}
 
     const requesting = useSelector(state => state.requesting);
-    const products = useSelector(state => state.products)
+    const products = useSelector(state => state.products);
+    const customers = useSelector(state => state.customers)
     const loggedIn = useSelector(state => state.sessions.loggedIn)
     const history = useHistory();
-    // const [products, setProducts] = useState([]);
+    const dispatch = useDispatch();
     const [cart, setCart] = useState([]);
     const [search, setSearch] = useState("");
     const [customerClicked, setCustomerClicked] = useState(false);
-
-    const dispatch = useDispatch();
-    // useEffect(() => {
-        //     fetch('http://localhost:3001/api/v1/products')
-        //     .then(resp => resp.json())
-        //     .then(data => { 
-            //         setProducts(data)
-            //     })
-            // }, [])
             
     useEffect(() => {
         if(loggedIn) {
             dispatch(loadProducts(localStorage.getItem('jwt')))
+            dispatch(loadCustomers(localStorage.getItem('jwt')))
         } else {
             history.push('/login')
         }
@@ -55,7 +50,9 @@ const Home = () => {
         setCart((cart) => cart.filter((product) => product.id !== productToRemove.id));
     }
 
+    console.log(customers)
     const displayedProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
+    // const displayedCustomers = customers.filter((customer) => customer.firstName.toLowerCase().includes(search.toLowerCase()));
 
     return (
         <div>
@@ -64,7 +61,7 @@ const Home = () => {
                 {customerClicked ? <Paper elevation={10} style={productStyle}>
                         <h2>Customers</h2>
                         <ProductSearch onSearch={setSearch}/>
-                        <ProductList products={displayedProducts} handleAddToCart={handleAddToCart}/>
+                        <CustomerList customers={customers}/>
                 </Paper> : <Paper elevation={10} style={productStyle}>
                         <h2>Products</h2>
                         <ProductSearch onSearch={setSearch}/>

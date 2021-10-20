@@ -4,7 +4,7 @@ import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, 
 import { useHistory } from 'react-router-dom'
 import { logout } from '../actions/sessions'
 
-const NavBar = () => {
+const NavBar = ({customerClicked, setCustomerClicked}) => {
     const drawerWidth = 240
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -29,6 +29,14 @@ const NavBar = () => {
         dispatch(logout(history))
         history.push('/login')
     }
+
+    const handleCustomer = (e) => {
+        setCustomerClicked(e.currentTarget);
+    }
+    const handleProducts = () => {
+        setCustomerClicked(false);
+    }
+
     const currentUser = useSelector(state => state.sessions.currentUser)
     const initials = `${currentUser.first_name[0]}${currentUser.last_name[0]}`
 
@@ -94,8 +102,15 @@ const NavBar = () => {
                 <Toolbar sx={{width: 170}}>
                 <Divider />
                 <List>
-                    <ListItem button >
+                    <ListItem button
+                        onClick={handleCustomer}
+                     >
                     <ListItemText primary={'Customers'} />
+                    </ListItem>
+                    <ListItem button
+                        onClick={handleProducts}
+                     >
+                    <ListItemText primary={'Products'} />
                     </ListItem>
                     <ListItem button >
                     <ListItemText primary={'New Customer'} />

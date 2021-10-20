@@ -8,13 +8,12 @@ import SalespersonProfile from "./employee/SalespersonProfile";
 
 function App() {
 
-  
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCurrentUser())
   }, [dispatch])
-  
+
   return (
     <div>
       <Router>
