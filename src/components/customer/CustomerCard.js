@@ -1,9 +1,9 @@
 import React from 'react'
 import { Grid, Card, Paper, CardContent, Button } from '@mui/material'
 
-const CustomerCard = ({customer, setCartCustomer}) => {
-    const handleClick = (customer) => {
-        setCartCustomer(customer);
+const CustomerCard = ({customer, handleAddCustomerToCart}) => {
+    const handleClick = () => {
+        handleAddCustomerToCart(customer);
     }
     return (
         <div>

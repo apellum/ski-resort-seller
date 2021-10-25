@@ -22,10 +22,11 @@ const Home = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [cart, setCart] = useState([]);
-    const [cartCustomer, setCartCustomer] = useState(null)
+    const [cartCustomer, setCartCustomer] = useState([]);
     const [search, setSearch] = useState("");
     const [customerClicked, setCustomerClicked] = useState(false);
-    
+
+        console.log(cartCustomer)    
     useEffect(() => {
         if(loggedIn) {
             dispatch(loadProducts(localStorage.getItem('jwt')))
@@ -51,9 +52,15 @@ const Home = () => {
         setCart((cart) => cart.filter((product) => product.id !== productToRemove.id));
     }
 
+    const handleAddCustomerToCart = (customerToAdd) => {
+        const customerInCart = cartCustomer.find((customer) => customer.id === customerToAdd.id)
+        if (!customerInCart) {
+        setCartCustomer([...cartCustomer, customerToAdd])
+        }
+        debugger
+    }
     const displayedProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
-    // const displayedCustomers = customers.filter((customer) => customer.first_name.toLowerCase().includes(search.toLowerCase()));
-
+    const displayCartCustomer = cartCustomer[0].first_name + " " + cartCustomer[0].last_name
     return (
         <div>
             <NavBar customerClicked={customerClicked} setCustomerClicked={setCustomerClicked}/>
@@ -61,7 +68,7 @@ const Home = () => {
                 {customerClicked ? <Paper elevation={10} style={productStyle}>
                         <h2>Customers</h2>
                         <ProductSearch onSearch={setSearch} customerClicked={customerClicked}/>
-                        <CustomerList customers={customers} setCartCustomer={setCartCustomer}/>
+                        <CustomerList customers={customers} handleAddCustomerToCart={handleAddCustomerToCart}/>
                 </Paper> : <Paper elevation={10} style={productStyle}>
                         <h2>Products</h2>
                         <ProductSearch onSearch={setSearch}/>
@@ -69,7 +76,7 @@ const Home = () => {
                 </Paper>}
                 <Paper elevation={10} style={cartStyle}>
                         <h2>Cart</h2>
-                        <h3>{cartCustomer}</h3>
+                        <h3>{displayCartCustomer}</h3>
                         <MyCart cart={cart} handleRemoveFromCart={handleRemoveFromCart}/>
                         <Grid>
                             <CartTotal cart={cart}/>

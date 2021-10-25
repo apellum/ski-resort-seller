@@ -4,11 +4,13 @@ import requestingReducer from './requestingReducer';
 import sessionsReducer from './sessionsReducer';
 import customersReducer from './customersReducer';
 import productsReducer from './productsReducer';
+import salesReducer from './salesReducer';
 
 export default combineReducers({
     errors: errorsReducer,
     requesting: requestingReducer,
     sessions: sessionsReducer,
     products: productsReducer,
-    customers: customersReducer
+    customers: customersReducer,
+    sales: salesReducer
 })
