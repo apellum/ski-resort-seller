@@ -29,4 +29,4 @@ export const loadCustomers = () => {
       dispatch({ type: "SET_CUSTOMERS", payload: data})
       dispatch({ type: "DONE_REQUESTING" })
     }
-  }
+}

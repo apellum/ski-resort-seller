@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Menu, Divider } from '@mui/material'
+import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, List, ListItem, ListItemText, Menu, Divider } from '@mui/material'
 import { useHistory } from 'react-router-dom'
 import { logout } from '../actions/sessions'
-import { addCustomer } from '../actions/customers'
 
 const NavBar = ({customerClicked, setCustomerClicked}) => {
     const drawerWidth = 240

@@ -15,7 +15,6 @@ export const login = (details, history) => {
         } else {
             localStorage.setItem('jwt', data.jwt);
             dispatch({ type: "CLEAR_ERRRORS" })
-            console.log(data)
             dispatch({ type: "LOGIN", payload: data });
         }
         dispatch({ type: "DONE_REQUESTING" });
@@ -38,7 +37,6 @@ export const getCurrentUser = () => {
             user: data,
             jwt: localStorage.getItem('jwt'),
         }
-        console.log(data)
         if (data.email) {
             dispatch({ type: "LOGIN", payload})
         }

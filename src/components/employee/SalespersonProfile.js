@@ -1,22 +1,15 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { Grid, Paper, Avatar, Box, List, Typography, Button} from '@mui/material'
 
 const SalespersonProfile = () => {
     const paperStyle = {padding : 20, height: '70vh', width: 350, margin: '20px auto', borderRadius: 25}
     const avatarStyle = {backgroundColor: '#03a9f4'}
-    const listStyle = {marginTop: 3}
 
     const currentUser = useSelector(state => state.sessions.currentUser)
     const initials = `${currentUser.first_name[0]}${currentUser.last_name[0]}`
     const fullName = `${currentUser.first_name} ${currentUser.last_name}`
-    const history = useHistory();
-    console.log(history)
 
-    const handleExit = () => {
-        history.replace();
-    }
     return (
         <div>
             <Grid container direction='column' alignItems='center' justifyContent='center'>
@@ -35,7 +28,7 @@ const SalespersonProfile = () => {
                                     <Typography sx={{marginTop: 2}}>Password: {currentUser.password}</Typography>
                                 </List>
                             </Box>
-                            {/* <Button href='./home'>Close</Button> */}
+                            <Button href='./home'>Close</Button>
                             {/* Button can be enabled when currentUser is saved with refresh */}
                 </Paper>
             </Grid>

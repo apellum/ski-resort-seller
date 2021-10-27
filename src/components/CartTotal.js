@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-const CartTotal = ({cart}) => {
-    const [totalPrice, setTotalPrice] = useState(0);
+const CartTotal = ({cart, totalPrice, setTotalPrice}) => {
 
     useEffect(() => {
         let nums = [];
@@ -10,7 +9,7 @@ const CartTotal = ({cart}) => {
           return a + b;
         }, 0);
         setTotalPrice(newNums);
-      }, [cart]);
+      }, [cart, setTotalPrice]);
     return (
         <div>
             <h3>Total: </h3>

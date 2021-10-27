@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Paper, Avatar, FormControl, InputLabel, Input, Button, Box, TextField } from '@mui/material'
+import { Grid, Paper, Avatar, Button, Box, TextField } from '@mui/material'
 import LoginIcon from '@mui/icons-material/Login';
 import { login } from '../../actions/sessions';
 import { useHistory } from 'react-router-dom';
