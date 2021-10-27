@@ -9,7 +9,7 @@ import MyCart from './product/MyCart'
 import ProductList from './product/ProductList'
 import CustomerList from './customer/CustomerList'
 import ProductSearch from './product/ProductSearch'
-import CartTotal from './CartTotal'
+import CartTotal from './product/CartTotal'
 import NavBar from './NavBar'
 
 const Home = () => {
@@ -29,14 +29,11 @@ const Home = () => {
     const [customerClicked, setCustomerClicked] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
     const [sale, setSale] = useState({
-        date: '27-10-2021',
         customer_id: JSON.parse(localStorage.getItem('customer_id')),
         user_id: currentUser.id,
         product_ids: []
     })
-    // console.log(cartCustomer.id)
-    // console.log(JSON.parse(localStorage.getItem('customer_id')));
-    console.log(sale.product_ids)
+
     useEffect(() => {
         if(loggedIn) {
             dispatch(loadProducts(localStorage.getItem('jwt')))
@@ -59,7 +56,6 @@ const Home = () => {
         }
     }, [products])
 
-    
     if (requesting) {
         return <h1>loading...</h1>
     }
@@ -126,10 +122,6 @@ const Home = () => {
                         <form onSubmit={handleSubmit}>
                         <MyCart cart={cart} handleRemoveFromCart={handleRemoveFromCart}/>
                         <Grid>
-                            {/* <Input type='hidden' id='customer_id' name='customer_id' value={cartCustomer.id}/>
-                            <Input type='hidden' id='user_id' name='user_id' value={currentUser.id}/>
-                            <Input type='hidden' id='date' name='date' value='2021-10-25'/>
-                            <Input type='hidden' id='total' name='total' value={totalPrice}/> */}
                             <CartTotal cart={cart} totalPrice={totalPrice} setTotalPrice={setTotalPrice}/>
                             <Button type='submit' >Make Sale</Button>
                         </Grid>

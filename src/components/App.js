@@ -6,6 +6,7 @@ import Home from "./Home";
 import Login from "./sessions/Login";
 import SalespersonProfile from "./employee/SalespersonProfile";
 import NewCustomer from "./customer/NewCustomer";
+import SaleHistory from "./SaleHistory";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route exact path='/home' component={ Home } />
           <Route exact path='/me' component={ SalespersonProfile }/>
           <Route exact path='/new-customer' component={ NewCustomer}></Route>
+          <Route exact path='/sale-history' component={ SaleHistory}></Route>
         </Switch>
       </Router>
     </div>
