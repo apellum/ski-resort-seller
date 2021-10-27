@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux'
 import { loadProducts } from '../actions/products'
 import { loadCustomers } from '../actions/customers'
+import { addSale } from '../actions/sale'
 import { Grid, Paper, Button } from '@mui/material'
 import MyCart from './product/MyCart'
 import ProductList from './product/ProductList'
@@ -27,14 +28,15 @@ const Home = () => {
     const [search, setSearch] = useState("");
     const [customerClicked, setCustomerClicked] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
-    // const [sale, setSale] = useState({
-    //     total: 0,
-    //     date: '',
-    //     customer_id: cartCustomer[0].id,
-    //     user_id: currentUser.id
-    // })
-    // console.log(sale) 
-
+    const [sale, setSale] = useState({
+        date: '27-10-2021',
+        customer_id: JSON.parse(localStorage.getItem('customer_id')),
+        user_id: currentUser.id,
+        product_ids: []
+    })
+    // console.log(cartCustomer.id)
+    // console.log(JSON.parse(localStorage.getItem('customer_id')));
+    console.log(sale.product_ids)
     useEffect(() => {
         if(loggedIn) {
             dispatch(loadProducts(localStorage.getItem('jwt')))
@@ -43,81 +45,68 @@ const Home = () => {
             history.push('/login')
         }
     }, [loggedIn, dispatch, history])
-
+    
     useEffect(() => {
         const customer_id = localStorage.getItem('customer_id');
         const customerInCart = customers.find((customer) => customer.id === parseInt(customer_id, 10))
         setCartCustomer(customerInCart)
     }, [customers])
-
+    
     useEffect(() => {
         const cart_products = localStorage.getItem('cart_products');
         if (cart_products) {
             setCart(JSON.parse(localStorage.getItem('cart_products')))
         }
-        // const productsInCart = products.find((product) => product.id === parseInt(cart_products, 10))
-        // setCart([...cart, productsInCart])
-        // const productsInCart = products.find((product) => product.id === parseInt(cartProducts, 10));
-        // console.log(productsInCart)
-        // setCart([...cart, productsInCart])
     }, [products])
+
     
     if (requesting) {
         return <h1>loading...</h1>
     }
     
-    // const handleAddToCart = (productToAdd) => {
-    //     const productInCart = cart.find((product) => product.id === productToAdd.id);
-    //     if (!productInCart) {
-    //         setCart([...cart, productToAdd])
-    //     }
-    // }
     const handleAddToCart = (productToAdd) => {
         const existingCart = [...cart, productToAdd]
-        console.log(existingCart)
-        setCart(existingCart)
-        localStorage.setItem("cart_products", JSON.stringify(existingCart))
-    }
+        const existingCartDuplicates = cart.map((product) => product.id)
+        if (existingCartDuplicates.includes(productToAdd.id)) {
+            console.log(existingCartDuplicates)
+        } else {
+                setCart(existingCart)
+                setSale({...sale, product_ids: [...sale.product_ids, productToAdd.id]})
+                localStorage.setItem("cart_products", JSON.stringify(existingCart))
+                
+                }
+            }
+            
+            const handleRemoveFromCart = (productToRemove) => {
+                const cartFilter = cart.filter((product) => product.id !== productToRemove.id)
+                setCart(cartFilter);
+                localStorage.setItem("cart_products", JSON.stringify(cartFilter));
+            }
+            
+            const handleAddCustomerToCart = (customerToAdd) => {
+                const customerInCart = customers.find((customer) => customer.id === customerToAdd.id)
+                setCartCustomer(customerInCart)
+                localStorage.setItem('customer_id', customerToAdd.id);
+                
+            }
 
+            
+            
+            const handleSubmit = (e) => {
+                e.preventDefault();
 
-
-    // const handleAddToCart = (productToAdd) => {
-    //     const productsInCart = products.find((product) => product.id === productToAdd.id);
-    //     console.log(productsInCart)
-    //     setCart([...cart, productToAdd])
-    //     console.log(cart)
-    //     localStorage.setItem('cart', [])
-    // }
-    
-    // const handleAddToCart = (productToAdd) => {
-    //     const cartProducts = localStorage.getItem('cart_products');
-    //     const productsInCart = products.find((product) => product.id === productToAdd.id);
-    //     console.log(productsInCart)
-    //     setCart(...cart, productsInCart)
-    //     console.log(cart)
-    //     localStorage.setItem('product_to_add', JSON.stringify(productToAdd));
-    //     cart.push(productToAdd);
-    //     console.log(cartProducts)
-    //     localStorage.setItem("cart_products", JSON.stringify(cartProducts))
-    //     console.log(cartProducts)
-    // }
-
-    const handleRemoveFromCart = (productToRemove) => {
-        const cartFilter = cart.filter((product) => product.id !== productToRemove.id)
-        setCart(cartFilter);
-        localStorage.setItem("cart_products", JSON.stringify(cartFilter));
-    }
-
-    const handleAddCustomerToCart = (customerToAdd) => {
-        const customerInCart = customers.find((customer) => customer.id === customerToAdd.id)
-        setCartCustomer(customerInCart)
-        localStorage.setItem('customer_id', customerToAdd.id);
-        
-    }
-
-
-    const displayedProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
-    const displayCartCustomer = cartCustomer.first_name + " " + cartCustomer.last_name
+                const newSale = {...sale, total: totalPrice}
+                
+                dispatch(addSale(newSale, currentUser))
+                console.log(sale)
+                localStorage.removeItem("cart_products")
+                setCart([])
+                history.push('/home')
+            }
+            
+        const cartMap = cart.map((cartItem) => cartItem.id)
+        const displayedProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
+        const displayCartCustomer = cartCustomer.first_name + " " + cartCustomer.last_name
     return (
         <div>
             <NavBar customerClicked={customerClicked} setCustomerClicked={setCustomerClicked}/>
@@ -134,7 +123,7 @@ const Home = () => {
                 <Paper elevation={10} style={cartStyle}>
                         <h2>Cart</h2>
                         {cartCustomer ? <h3>{displayCartCustomer}</h3>: null}
-                        <form >
+                        <form onSubmit={handleSubmit}>
                         <MyCart cart={cart} handleRemoveFromCart={handleRemoveFromCart}/>
                         <Grid>
                             {/* <Input type='hidden' id='customer_id' name='customer_id' value={cartCustomer.id}/>
