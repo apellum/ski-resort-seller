@@ -1,7 +1,9 @@
+import { baseUrl } from "../GlobalVariable";
+
 export const login = (details, history) => {
     return async dispatch => {
         dispatch({ type: "REQUESTING" });
-        const resp = await fetch('http://localhost:3001/api/v1/login', {
+        const resp = await fetch(baseUrl + '/login', {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -25,7 +27,7 @@ export const login = (details, history) => {
 export const getCurrentUser = () => {
     return async dispatch => {
         dispatch({ type: "REQUESTING"})
-        const resp = await fetch('http://localhost:3001/api/v1/get-current-user', {
+        const resp = await fetch(baseUrl + '/get-current-user', {
         headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",

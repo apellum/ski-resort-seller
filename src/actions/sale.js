@@ -1,6 +1,8 @@
+import { baseUrl } from "../GlobalVariable"
+
 export const addSale = (details, token) => {
     return async (dispatch) => {
-      const resp = await fetch(`http://localhost:3001/api/v1/sales`, {
+      const resp = await fetch(baseUrl + `/sales`, {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -18,7 +20,7 @@ export const addSale = (details, token) => {
 export const loadSales = () => {
   return async dispatch => {
     dispatch({ type: "REQUESTING" });
-    const resp = await fetch(`http://localhost:3001/api/v1/customers/${JSON.parse(localStorage.getItem('customer_id'))}/sales`, {
+    const resp = await fetch(baseUrl + `/customers/${JSON.parse(localStorage.getItem('customer_id'))}/sales`, {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",

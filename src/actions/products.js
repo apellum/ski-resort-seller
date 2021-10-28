@@ -1,7 +1,9 @@
+import { baseUrl } from "../GlobalVariable";
+
 export const loadProducts = () => {
     return async dispatch => {
       dispatch({ type: "REQUESTING" });
-      const resp = await fetch('http://localhost:3001/api/v1/products', {
+      const resp = await fetch(baseUrl +'/products', {
         headers: {
           "Accept": "application/json",
           "Content-Type": "application/json",
