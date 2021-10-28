@@ -49,7 +49,9 @@ const Home = () => {
     useEffect(() => {
         const customer_id = localStorage.getItem('customer_id');
         const customerInCart = customers.find((customer) => customer.id === parseInt(customer_id, 10))
-        setCartCustomer(customerInCart)
+        if (!customerInCart) {
+            setCartCustomer(customerInCart)
+        }
     }, [customers])
     
     useEffect(() => {
