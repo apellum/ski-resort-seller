@@ -24,7 +24,10 @@ const Home = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [cart, setCart] = useState([]);
-    const [cartCustomer, setCartCustomer] = useState({});
+    const [cartCustomer, setCartCustomer] = useState({
+        first_name: "",
+        last_name: ""
+    });
     const [search, setSearch] = useState("");
     const [customerClicked, setCustomerClicked] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
