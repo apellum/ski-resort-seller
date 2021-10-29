@@ -1,7 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 import { Grid, Paper, Box, Card, CardContent, Button } from '@mui/material'
-import { textAlign } from '@mui/system'
 
 
 const SaleHistoryCard = ({sale, productNameList}) => {

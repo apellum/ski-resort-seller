@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Button, Input } from '@mui/material';
 
 const ProductSearch = ({onSearch, customerClicked}) => {
     const [search, setSearch] = useState("");
@@ -16,8 +17,8 @@ const ProductSearch = ({onSearch, customerClicked}) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                {customerClicked ? <input type='text' id='search' placeholder='Search for Customer' value={search} onChange={handleChange} /> : <input type='text' id='search' placeholder='Search for Product' value={search} onChange={handleChange} />}
-                <button type='submit'>Search</button>
+                {customerClicked ? <Input type='text' id='search' placeholder='Search for Customer' value={search} onChange={handleChange} /> : <Input type='text' id='search' placeholder='Search for Product' value={search} onChange={handleChange} />}
+                <Button type='submit' variant="contained">Search</Button>
             </form>
         </div>
     )

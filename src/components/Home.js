@@ -105,7 +105,6 @@ const Home = () => {
                 history.push('/home')
             }
             
-        const cartMap = cart.map((cartItem) => cartItem.id)
         const displayedProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
         const displayCartCustomer = cartCustomer.first_name + " " + cartCustomer.last_name
     return (
