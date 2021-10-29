@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router'
-import { Grid, Paper, Box, Card, CardContent, Button } from '@mui/material'
+import { Grid, Box, Card, CardContent } from '@mui/material'
 
 
 const SaleHistoryCard = ({sale, productNameList}) => {
@@ -10,31 +10,19 @@ const SaleHistoryCard = ({sale, productNameList}) => {
     const returnHome = () => {
         history.push('/home')
     }
+
     return (
         <div>
-            <Grid container direction='column' alignItems='center' justifyContent='center'>
-            <Paper elevation={10} style={paperStyle}>
-                <Grid align='center'>
-                    <h2>Transaction History</h2>
-                </Grid>
-                <Grid item container alignItems="center" justify="center">
+            <Grid item container alignItems="center" justify="center" flexDirection='column'>
                     <Box alignContent='center' justifyContent='center'>
                         <Grid item align='center' alignItems="center" justify="center">
-                            <Card>
-                            <CardContent>Customer: {sale.customer.first_name} {sale.customer.last_name}</CardContent>
-                            <CardContent>Product Name: {productNameList}</CardContent>
+                            <Card item sx={{ minWidth: 300, alignItems: 'center' }}>
+                            <CardContent>Products: {productNameList}</CardContent>
                             <CardContent>Total: {sale.total}</CardContent>
                             </Card>
                         </Grid>
-                        <Button
-                                    type="submit"
-                                    variant='text'
-                                    onClick={returnHome}
-                                 >Close</Button>
                     </Box>
                 </Grid>
-            </Paper>
-        </Grid>
         </div>
     )
 }

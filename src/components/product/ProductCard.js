@@ -9,7 +9,7 @@ const ProductCard = ({product, handleProductClick, cart}) => {
         <div>
             <Grid>
                 <Paper>
-                    <Card item>
+                    <Card item >
                         <CardContent>Product: {product.name}</CardContent>
                         <CardContent>Category: {product.category}</CardContent>
                         <CardContent>Price: {product.price}</CardContent>

@@ -55,7 +55,7 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
             >
             <Toolbar>
                 <Typography flexGrow='1' variant="h6" noWrap component="div">
-                Welcome to resort booker
+                Resort Booker
                 </Typography>
                 <div position="right">
                     <IconButton
@@ -86,8 +86,8 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                        <MenuItem sx={{color: '#1976d2'}} onClick={handleProfile}>Profile</MenuItem>
+                        <MenuItem sx={{color: '#1976d2'}} onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
                 </div>
             </Toolbar>
@@ -96,12 +96,13 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
                 sx={{
                 paddingTop: 8,
                 width: drawerWidth,
-                flexShrink: 0,
+                // flexShrink: 0,
                 }}
                 variant="permanent"
                 anchor="left"
+                flexGrow="1"
             >
-                <Toolbar sx={{width: 170}}>
+                <Toolbar sx={{width: 170, color: "#1976d2"}}>
                 <Divider />
                 <List>
                     <ListItem button
@@ -119,12 +120,12 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
                     >
                     <ListItemText primary={'New Customer'} />
                     </ListItem>
-                    <ListItem button >
+                    {/* <ListItem button >
                     <ListItemText primary={'Weather'} />
                     </ListItem>
                     <ListItem button >
                     <ListItemText primary={'FAQ'} />
-                    </ListItem>
+                    </ListItem> */}
                 </List>
                 </Toolbar>
             </Drawer>
