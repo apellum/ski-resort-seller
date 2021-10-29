@@ -47,7 +47,12 @@ const Login = () => {
                             <Avatar style={avatarStyle}><LoginIcon/></Avatar>
                             <h2>Sign In</h2>
                         </Grid>
-                            <Box component='form' onSubmit={handleSubmit}>
+                            <Box component='form' onSubmit={handleSubmit} sx={{
+                                marginTop: 8,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                            }}>
                                 <TextField
                                     value={state.email}
                                     onChange={handleChange}
@@ -62,7 +67,7 @@ const Login = () => {
                                     label="Password"
                                     type="password"
                                     id="password"
-                                 />
+                                 /><br/>
                                  <Button
                                     type="submit"
                                     variant='text'
