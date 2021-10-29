@@ -1,9 +1,15 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 import { Grid, Card, Paper, CardContent, Button } from '@mui/material'
 
 const CustomerCard = ({customer, handleAddCustomerToCart}) => {
+    const history = useHistory();
     const handleClick = () => {
         handleAddCustomerToCart(customer);
+    }
+
+    const handleHistory = () => {
+        history.push('/sale-history')
     }
     return (
         <div>
@@ -17,6 +23,7 @@ const CustomerCard = ({customer, handleAddCustomerToCart}) => {
                         <CardContent>Email: {customer.email}</CardContent>
                         <CardContent>Phone Number: {customer.phone_number}</CardContent>
                         <CardContent>Created By: {customer.user_id}</CardContent>
+                        <Button onClick={handleHistory}>View Sale History</Button>
                         <Button onClick={handleClick}>Set Customer</Button>
                     </Card>
                 </Paper>

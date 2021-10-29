@@ -20,14 +20,17 @@ export const addSale = (details, token) => {
 export const loadSales = () => {
   return async dispatch => {
     dispatch({ type: "REQUESTING" });
-    const resp = await fetch(baseUrl + `/customers/${JSON.parse(localStorage.getItem('customer_id'))}/sales`, {
+    const customer_id = JSON.parse(localStorage.getItem('customer_id'))
+    console.log(baseUrl + `/customers/${JSON.parse(localStorage.getItem('customer_id'))}/sales`)
+    const resp = await fetch(baseUrl + `/customers/${customer_id}/sales`, {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
       }
     })
-
+    
     const data = await resp.json();
+    console.log(data)
     dispatch({ type: "SET_SALE", payload: data})
     dispatch({ type: "DONE_REQUESTING" })
   }

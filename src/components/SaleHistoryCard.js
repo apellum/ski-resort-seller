@@ -1,10 +1,16 @@
 import React from 'react'
-import { Grid, Paper, Box, Card, CardContent } from '@mui/material'
+import { useHistory } from 'react-router'
+import { Grid, Paper, Box, Card, CardContent, Button } from '@mui/material'
+import { textAlign } from '@mui/system'
 
 
-const SaleHistoryCard = ({sale, key}) => {
+const SaleHistoryCard = ({sale, productNameList}) => {
     const paperStyle = {padding: 20, height: '70vh', width: 350, margin: '20px auto', borderRadius: 25}
-    console.log(sale)
+    
+    const history = useHistory();
+    const returnHome = () => {
+        history.push('/home')
+    }
     return (
         <div>
             <Grid container direction='column' alignItems='center' justifyContent='center'>
@@ -12,15 +18,20 @@ const SaleHistoryCard = ({sale, key}) => {
                 <Grid align='center'>
                     <h2>Transaction History</h2>
                 </Grid>
-                <Grid item container>
-                    <Box>
-                        <Grid item align='center'>
+                <Grid item container alignItems="center" justify="center">
+                    <Box alignContent='center' justifyContent='center'>
+                        <Grid item align='center' alignItems="center" justify="center">
                             <Card>
                             <CardContent>Customer: {sale.customer.first_name} {sale.customer.last_name}</CardContent>
-                            <CardContent>Total: {sale.total}</CardContent>
+                            <CardContent>Product Name: {productNameList}</CardContent>
                             <CardContent>Total: {sale.total}</CardContent>
                             </Card>
                         </Grid>
+                        <Button
+                                    type="submit"
+                                    variant='text'
+                                    onClick={returnHome}
+                                 >Close</Button>
                     </Box>
                 </Grid>
             </Paper>
