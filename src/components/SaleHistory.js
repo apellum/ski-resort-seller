@@ -32,11 +32,14 @@ const SaleHistory = () => {
                             <h2>Transaction History</h2>
                     </Grid>
                     {salesList}
-                    <Button
-                                    type="submit"
-                                    variant='text'
-                                    onClick={returnHome}
-                        >Close</Button>
+                    <Grid align='center'>
+                        <Button
+                                        type="submit"
+                                        variant='text'
+                                        sx={{justifyContent:'center'}}
+                                        onClick={returnHome}
+                            >Close</Button>
+                    </Grid>
                 </Paper>
             </Grid>
         </div>

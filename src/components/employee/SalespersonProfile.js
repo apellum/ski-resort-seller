@@ -28,8 +28,7 @@ const SalespersonProfile = () => {
                                     <Typography sx={{marginTop: 2}}>Password: {currentUser.password}</Typography>
                                 </List>
                             </Box>
-                            <Button href='./home'>Close</Button>
-                            {/* Button can be enabled when currentUser is saved with refresh */}
+                            <Button href='/'>Close</Button>
                 </Paper>
             </Grid>
             </Grid> 

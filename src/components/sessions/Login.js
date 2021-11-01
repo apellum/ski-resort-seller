@@ -4,6 +4,7 @@ import { Grid, Paper, Avatar, Button, Box, TextField } from '@mui/material'
 import LoginIcon from '@mui/icons-material/Login';
 import { login } from '../../actions/sessions';
 import { useHistory } from 'react-router-dom';
+import { clearErrors } from '../../actions/errors';
 
 const Login = () => {
     const paperStyle = {padding : 20, height: '70vh', width: 350, margin: '20px auto', borderRadius: 25}
@@ -22,6 +23,9 @@ const Login = () => {
     useEffect(() => {
         if(loggedIn){
             history.push('/')
+        }
+        return () => {
+            dispatch(clearErrors())
         }
     }, [loggedIn, history])
 
