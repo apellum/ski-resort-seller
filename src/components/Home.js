@@ -90,8 +90,6 @@ const Home = () => {
         localStorage.setItem('customer_id', customerToAdd.id);
                 
     }
-
-            
             
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -106,6 +104,7 @@ const Home = () => {
     }
             
     const displayedProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
+    const displayedSearchCustomer = customers.filter((customer) => customer.first_name.toLowerCase().includes(search.toLowerCase()));
     const displayCartCustomer = cartCustomer.first_name + " " + cartCustomer.last_name
 
     return (
@@ -115,7 +114,7 @@ const Home = () => {
                 {customerClicked ? <Paper elevation={10} style={productStyle}>
                         <h2>Customers</h2>
                         <ProductSearch onSearch={setSearch} customerClicked={customerClicked}/>
-                        <CustomerList customers={customers} handleAddCustomerToCart={handleAddCustomerToCart}/>
+                        <CustomerList customers={displayedSearchCustomer} handleAddCustomerToCart={handleAddCustomerToCart}/>
                 </Paper> : <Paper elevation={10} style={productStyle}>
                         <h2>Products</h2>
                         <ProductSearch onSearch={setSearch}/>

@@ -8,7 +8,10 @@ const CustomerCard = ({customer, handleAddCustomerToCart}) => {
         handleAddCustomerToCart(customer);
     }
 
+    console.log(customer)
+
     const handleHistory = () => {
+        localStorage.setItem('customer_id', customer.id)
         history.push('/sale-history')
     }
     return (
@@ -22,8 +25,9 @@ const CustomerCard = ({customer, handleAddCustomerToCart}) => {
                         <CardContent>Address: {customer.address}</CardContent>
                         <CardContent>Email: {customer.email}</CardContent>
                         <CardContent>Phone Number: {customer.phone_number}</CardContent>
+                        <CardContent>Customer ID: {customer.id}</CardContent>
                         <CardContent>Created By: {customer.user_id}</CardContent>
-                        {localStorage.getItem('customer_id') ? <Button onClick={handleHistory}>View Sale History</Button> : null}
+                        <Button onClick={handleHistory}>View Sale History</Button>
                         <Button onClick={handleClick}>Set Customer</Button>
                     </Card>
                 </Paper>
