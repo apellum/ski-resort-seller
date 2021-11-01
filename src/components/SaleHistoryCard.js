@@ -1,15 +1,9 @@
 import React from 'react'
-import { useHistory } from 'react-router'
 import { Grid, Box, Card, CardContent } from '@mui/material'
 
 
 const SaleHistoryCard = ({sale, productNameList}) => {
     const paperStyle = {padding: 20, height: '70vh', width: 350, margin: '20px auto', borderRadius: 25}
-    
-    const history = useHistory();
-    const returnHome = () => {
-        history.push('/home')
-    }
 
     return (
         <div>

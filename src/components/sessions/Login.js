@@ -21,7 +21,7 @@ const Login = () => {
 
     useEffect(() => {
         if(loggedIn){
-            history.push('/home')
+            history.push('/')
         }
     }, [loggedIn, history])
 

@@ -76,37 +76,38 @@ const Home = () => {
                 localStorage.setItem("cart_products", JSON.stringify(existingCart))
                 
                 }
-            }
+    }
             
-            const handleRemoveFromCart = (productToRemove) => {
-                const cartFilter = cart.filter((product) => product.id !== productToRemove.id)
-                setCart(cartFilter);
-                localStorage.setItem("cart_products", JSON.stringify(cartFilter));
-            }
+    const handleRemoveFromCart = (productToRemove) => {
+        const cartFilter = cart.filter((product) => product.id !== productToRemove.id)
+        setCart(cartFilter);
+        localStorage.setItem("cart_products", JSON.stringify(cartFilter));
+    }
             
-            const handleAddCustomerToCart = (customerToAdd) => {
-                const customerInCart = customers.find((customer) => customer.id === customerToAdd.id)
-                setCartCustomer(customerInCart)
-                localStorage.setItem('customer_id', customerToAdd.id);
+    const handleAddCustomerToCart = (customerToAdd) => {
+        const customerInCart = customers.find((customer) => customer.id === customerToAdd.id)
+        setCartCustomer(customerInCart)
+        localStorage.setItem('customer_id', customerToAdd.id);
                 
-            }
+    }
 
             
             
-            const handleSubmit = (e) => {
-                e.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-                const newSale = {...sale, total: totalPrice}
+        const newSale = {...sale, total: totalPrice}
                 
-                dispatch(addSale(newSale, currentUser))
-                console.log(sale)
-                localStorage.removeItem("cart_products")
-                setCart([])
-                history.push('/home')
-            }
+        dispatch(addSale(newSale, currentUser))
+        console.log(sale)
+        localStorage.removeItem("cart_products")
+        setCart([])
+        history.push('/')
+    }
             
-        const displayedProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
-        const displayCartCustomer = cartCustomer.first_name + " " + cartCustomer.last_name
+    const displayedProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
+    const displayCartCustomer = cartCustomer.first_name + " " + cartCustomer.last_name
+
     return (
         <div>
             <NavBar customerClicked={customerClicked} setCustomerClicked={setCustomerClicked}/>

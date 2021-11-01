@@ -7,6 +7,7 @@ import Login from "./sessions/Login";
 import SalespersonProfile from "./employee/SalespersonProfile";
 import NewCustomer from "./customer/NewCustomer";
 import SaleHistory from "./SaleHistory";
+import Errors from "./static/Errors";
 
 function App() {
 
@@ -19,9 +20,10 @@ function App() {
   return (
     <div>
       <Router>
+        <Errors />
         <Switch>
           <Route exact path='/login' component={ Login }/>
-          <Route exact path='/home' component={ Home } />
+          <Route exact path='/' component={ Home } />
           <Route exact path='/me' component={ SalespersonProfile }/>
           <Route exact path='/new-customer' component={ NewCustomer}></Route>
           <Route exact path='/sale-history' component={ SaleHistory}></Route>

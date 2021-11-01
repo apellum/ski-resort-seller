@@ -31,7 +31,7 @@ const NewCustomer = () => {
         e.preventDefault();
 
         dispatch(addCustomer(state, currentUser))
-        history.push('/home')
+        history.push('/')
     }
 
     return (

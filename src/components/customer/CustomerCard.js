@@ -23,7 +23,7 @@ const CustomerCard = ({customer, handleAddCustomerToCart}) => {
                         <CardContent>Email: {customer.email}</CardContent>
                         <CardContent>Phone Number: {customer.phone_number}</CardContent>
                         <CardContent>Created By: {customer.user_id}</CardContent>
-                        <Button onClick={handleHistory}>View Sale History</Button>
+                        {localStorage.getItem('customer_id') ? <Button onClick={handleHistory}>View Sale History</Button> : null}
                         <Button onClick={handleClick}>Set Customer</Button>
                     </Card>
                 </Paper>

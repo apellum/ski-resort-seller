@@ -13,14 +13,15 @@ export const login = (details, history) => {
         })
         const data = await resp.json();
         if (data.errors) {
+            console.log(data.errors)
             dispatch({ type: "ERRORS", payload: data.errors })
         } else {
             localStorage.setItem('jwt', data.jwt);
             dispatch({ type: "CLEAR_ERRRORS" })
             dispatch({ type: "LOGIN", payload: data });
+            history.push('/')
         }
         dispatch({ type: "DONE_REQUESTING" });
-        history.push('/home')
     }
 }
 

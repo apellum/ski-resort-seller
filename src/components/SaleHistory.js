@@ -4,7 +4,6 @@ import { loadSales } from '../actions/sale'
 import SaleHistoryList from './SaleHistoryList'
 import { Grid, Paper, Button } from '@mui/material'
 import { useHistory } from 'react-router'
-// import SaleHistoryCard from './SaleHistoryCard'
 
 const SaleHistory = () => {
     const sales = useSelector(state => state.sales)
@@ -21,7 +20,7 @@ const SaleHistory = () => {
 
     const history = useHistory();
     const returnHome = () => {
-        history.push('/home')
+        history.push('/')
     }
 
 
