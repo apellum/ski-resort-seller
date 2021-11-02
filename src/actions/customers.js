@@ -12,7 +12,6 @@ export const addCustomer = (details, token) => {
       body: JSON.stringify(details)
     })
     const data = await resp.json()
-    console.log(data)
     dispatch({type: "ADD_CUSTOMER", payload: data})
   }
 }

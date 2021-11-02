@@ -18,7 +18,6 @@ const NewCustomer = () => {
         email: "",
         user_id: currentUser.id
     })
-    console.log(currentUser)
 
     const handleChange = e => {
         setState({

@@ -97,7 +97,6 @@ const Home = () => {
         const newSale = {...sale, total: totalPrice}
                 
         dispatch(addSale(newSale, currentUser))
-        console.log(sale)
         localStorage.removeItem("cart_products")
         setCart([])
         history.push('/')

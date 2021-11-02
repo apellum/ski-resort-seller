@@ -8,7 +8,6 @@ const ProductSearch = ({onSearch, customerClicked}) => {
         e.preventDefault();
 
         onSearch(search)
-        console.log(search, setSearch)
     }
 
     const handleChange = (e) => {

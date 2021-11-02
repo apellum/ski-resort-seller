@@ -8,8 +8,6 @@ const CustomerCard = ({customer, handleAddCustomerToCart}) => {
         handleAddCustomerToCart(customer);
     }
 
-    console.log(customer)
-
     const handleHistory = () => {
         localStorage.setItem('customer_id', customer.id)
         history.push('/sale-history')
