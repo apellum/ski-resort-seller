@@ -41,6 +41,10 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
         history.push('/new-customer')
     }
 
+    const handleWeather = () => {
+        history.push('/weather')
+    }
+
     const currentUser = useSelector(state => state.sessions.currentUser)
     const initials = `${currentUser.first_name[0]}${currentUser.last_name[0]}`
 
@@ -120,10 +124,12 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
                     >
                     <ListItemText primary={'New Customer'} />
                     </ListItem>
-                    {/* <ListItem button >
+                    <ListItem button 
+                        onClick={handleWeather}
+                    >
                     <ListItemText primary={'Weather'} />
                     </ListItem>
-                    <ListItem button >
+                    {/* <ListItem button >
                     <ListItemText primary={'FAQ'} />
                     </ListItem> */}
                 </List>

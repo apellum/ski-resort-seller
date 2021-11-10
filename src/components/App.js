@@ -8,6 +8,7 @@ import SalespersonProfile from "./employee/SalespersonProfile";
 import NewCustomer from "./customer/NewCustomer";
 import SaleHistory from "./SaleHistory";
 import Errors from "./static/Errors";
+import Weather from "./Weather";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route exact path='/' component={ Home } />
           <Route exact path='/me' component={ SalespersonProfile }/>
           <Route exact path='/new-customer' component={ NewCustomer}></Route>
+          <Route exact path='/weather' component={ Weather}></Route>
           <Route exact path='/sale-history' component={ SaleHistory}></Route>
         </Switch>
       </Router>
