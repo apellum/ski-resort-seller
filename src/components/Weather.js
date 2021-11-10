@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { apiUrl } from '../GlobalVariable'
+import { Grid, Paper, Card, CardContent, Button } from '@mui/material'
 
 const Weather = () => {
+    const paperStyle = {padding: 20, height: '70vh', width: 350, margin: '20px auto', borderRadius: 25}
+
+    const history = useHistory()
     const [weather, setWeather] = useState({})
     const [initialLoad, setInitialLoad] = useState(false)
 
@@ -20,15 +25,27 @@ const Weather = () => {
     const kelvinToFarenheight = (k) => {
         return (((k - 273.15) * 1.8) + 32).toFixed()
     }
-    debugger
+    const handleClose = () => {
+        history.push('/')
+    }
     if (weather.main || weather.weather) {
 
 
         return (
             <div>
-                <p>Mountaintop Weather: {kelvinToFarenheight(weather.main.temp)}°F</p>
-                <p>Mountaintop Forecast: {weather.weather[0].description}</p>
-
+                <Grid item container alignItems="center" justify="center" flexDirection='column'>
+                    <Paper elevation={10} style={paperStyle}>
+                        <Grid>
+                            <Card item>
+                                <CardContent>Mountaintop Weather: {kelvinToFarenheight(weather.main.temp)}°F</CardContent>
+                                <CardContent>Mountaintop Forecast: {weather.weather[0].description}</CardContent>
+                                <Grid align='center'>
+                                    <Button onClick={handleClose} sx={{justifyContent:'center'}}>Close</Button>
+                                </Grid>
+                            </Card>
+                        </Grid>
+                    </Paper>
+                </Grid>
             </div>
         )
     } else 
