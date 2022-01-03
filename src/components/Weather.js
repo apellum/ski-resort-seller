@@ -35,14 +35,12 @@ const Weather = () => {
             <div>
                 <Grid item container alignItems="center" justify="center" flexDirection='column'>
                     <Paper elevation={10} style={paperStyle}>
-                        <Grid>
-                            <Card item>
+                        <Grid alignItems='center' justify='center' direction='column' sx={{ minHeight: "100vh" }}>
                                 <CardContent>Mountaintop Weather: {kelvinToFarenheight(weather.main.temp)}°F</CardContent>
                                 <CardContent>Mountaintop Forecast: {weather.weather[0].description}</CardContent>
-                                <Grid align='center'>
+                                <Grid align='center' paddingBottom='0'>
                                     <Button onClick={handleClose} sx={{justifyContent:'center'}}>Close</Button>
                                 </Grid>
-                            </Card>
                         </Grid>
                     </Paper>
                 </Grid>

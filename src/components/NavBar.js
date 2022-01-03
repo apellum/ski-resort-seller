@@ -129,9 +129,6 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
                     >
                     <ListItemText primary={'Weather'} />
                     </ListItem>
-                    {/* <ListItem button >
-                    <ListItemText primary={'FAQ'} />
-                    </ListItem> */}
                 </List>
                 </Toolbar>
             </Drawer>
