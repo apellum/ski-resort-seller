@@ -5,9 +5,11 @@ const ProductCard = ({product, handleProductClick, cart}) => {
     const handleClick = () => {
         handleProductClick(product);
     }
+
+    const productCardStyle = {margin: '10px auto'}
     return (
         <div>
-            <Grid>
+            <Grid style={productCardStyle}>
                 <Paper>
                     <Card item >
                         <CardContent>Product: {product.name}</CardContent>

@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, List, ListItem, ListItemText, Menu, Divider } from '@mui/material'
+import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, List, ListItem, ListItemText, Menu, Divider, Modal } from '@mui/material'
 import { useHistory } from 'react-router-dom'
 import { logout } from '../actions/sessions'
+import Weather from './Weather'
 
 const NavBar = ({customerClicked, setCustomerClicked}) => {
     const drawerWidth = 240
 
     const [anchorEl, setAnchorEl] = useState(null);
+    const [modalToggle, setModalToggle] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
     
@@ -42,7 +44,12 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
     }
 
     const handleWeather = () => {
-        history.push('/weather')
+        setModalToggle(true)
+    }
+
+    const handleWeatherClose = () => {
+        console.log(modalToggle)
+        setModalToggle(false)
     }
 
     const currentUser = useSelector(state => state.sessions.currentUser)
@@ -127,12 +134,20 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
                     <ListItem button 
                         onClick={handleWeather}
                     >
+                    
                     <ListItemText primary={'Weather'} />
                     </ListItem>
                 </List>
                 </Toolbar>
             </Drawer>
         </Box>
+        <Modal open={modalToggle}
+        onClose={handleWeatherClose}
+        >
+            <Box>
+                <Weather close={handleWeatherClose}/>
+            </Box>
+        </Modal>
     </div>
             
     )

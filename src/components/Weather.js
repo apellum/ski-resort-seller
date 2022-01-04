@@ -3,10 +3,11 @@ import { useHistory } from 'react-router-dom'
 import { apiUrl } from '../GlobalVariable'
 import { Grid, Paper, Card, CardContent, Button } from '@mui/material'
 
-const Weather = () => {
+const Weather = ({close}) => {
     const paperStyle = {padding: 20, height: '70vh', width: 350, margin: '20px auto', borderRadius: 25}
 
     const history = useHistory()
+    const [open, setOpen] = useState(false)
     const [weather, setWeather] = useState({})
     const [initialLoad, setInitialLoad] = useState(false)
 
@@ -28,6 +29,9 @@ const Weather = () => {
     const handleClose = () => {
         history.push('/')
     }
+
+
+
     if (weather.main || weather.weather) {
 
 
@@ -39,7 +43,7 @@ const Weather = () => {
                                 <CardContent>Mountaintop Weather: {kelvinToFarenheight(weather.main.temp)}°F</CardContent>
                                 <CardContent>Mountaintop Forecast: {weather.weather[0].description}</CardContent>
                                 <Grid align='center' paddingBottom='0'>
-                                    <Button onClick={handleClose} sx={{justifyContent:'center'}}>Close</Button>
+                                    <Button onClick={close} sx={{justifyContent:'center'}}>Close</Button>
                                 </Grid>
                         </Grid>
                     </Paper>
