@@ -4,12 +4,14 @@ import {AppBar, Toolbar, Box, IconButton, MenuItem, Avatar, Typography, Drawer, 
 import { useHistory } from 'react-router-dom'
 import { logout } from '../actions/sessions'
 import Weather from './Weather'
+import NewCustomer from './customer/NewCustomer'
 
 const NavBar = ({customerClicked, setCustomerClicked}) => {
     const drawerWidth = 240
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [modalToggle, setModalToggle] = useState(false);
+    const [newCustomerToggle, setNewCustomerToggle] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
     
@@ -39,9 +41,9 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
         setCustomerClicked(false);
     }
 
-    const handleNewCustomer = () => {
-        history.push('/new-customer')
-    }
+    // const handleNewCustomer = () => {
+    //     history.push('/new-customer')
+    // }
 
     const handleWeather = () => {
         setModalToggle(true)
@@ -50,6 +52,14 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
     const handleWeatherClose = () => {
         console.log(modalToggle)
         setModalToggle(false)
+    }
+
+    const handleNewCustomer = () => {
+        setNewCustomerToggle(true)
+    }
+
+    const handleNewCustomerClose = () => {
+        setNewCustomerToggle(false)
     }
 
     const currentUser = useSelector(state => state.sessions.currentUser)
@@ -146,6 +156,12 @@ const NavBar = ({customerClicked, setCustomerClicked}) => {
         >
             <Box>
                 <Weather close={handleWeatherClose}/>
+            </Box>
+        </Modal>
+        <Modal open={newCustomerToggle}
+        onClose={handleNewCustomerClose}>
+            <Box>
+                <NewCustomer closeCustomer={handleNewCustomerClose}/>
             </Box>
         </Modal>
     </div>

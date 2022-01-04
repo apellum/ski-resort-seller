@@ -4,7 +4,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import { Grid, Paper, Button, Box, TextField } from '@mui/material'
 import { addCustomer } from '../../actions/customers'
 
-const NewCustomer = () => {
+const NewCustomer = ({closeCustomer}) => {
     const paperStyle = {padding: 20, height: '70vh', width: 350, margin: '20px auto', borderRadius: 25}
     const dispatch = useDispatch();
     const history = useHistory();
@@ -88,6 +88,7 @@ const NewCustomer = () => {
                                     type="submit"
                                     variant='text'
                                  >Create New Customer</Button>
+                        <Button onClick={closeCustomer}>Close</Button>
                     </Grid>
                     </Box>
                 </Grid>
