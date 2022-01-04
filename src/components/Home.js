@@ -115,7 +115,7 @@ const Home = () => {
                         <ProductSearch onSearch={setSearch} customerClicked={customerClicked}/>
                         <CustomerList customers={displayedSearchCustomer} handleAddCustomerToCart={handleAddCustomerToCart}/>
                 </Paper> : <Paper elevation={10} style={productStyle}>
-                        <h2>Products</h2>
+                        <h2>Productz</h2>
                         <ProductSearch onSearch={setSearch}/>
                         <ProductList products={displayedProducts} handleAddToCart={handleAddToCart}/>
                 </Paper>}
